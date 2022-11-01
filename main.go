@@ -9,5 +9,6 @@ import (
 
 func main() {
 	models.ConnectDatabase()
+	models.DBMigrate()
 	beego.Run()
 }
