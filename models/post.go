@@ -9,3 +9,9 @@ type Post struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time `gorm:"index"`
 }
+
+func (Post) GetAll() *[]Post {
+	var posts []Post
+	DB.Find(&posts)
+	return &posts
+}
