@@ -65,3 +65,14 @@ func (c *PostsController) PostsUpdate() {
 	post.Update(title, content)
 	c.Redirect("/posts", http.StatusMovedPermanently)
 }
+
+func (c *PostsController) PostsDelete() {
+	idStr := c.Ctx.Input.Param(":id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	note := models.Post{}.Find(id)
+	note.MarkDelete()
+	c.Redirect("/posts", http.StatusMovedPermanently)
+}

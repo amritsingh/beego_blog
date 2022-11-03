@@ -15,8 +15,31 @@
 
             <br/>
             
+            <script>
+                function sendDelete(event, href){
+                    var xhttp = new XMLHttpRequest();
+                    event.preventDefault();
+                    xhttp.onreadystatechange = function() {
+                        // return if not ready state 4
+                        if (this.readyState !== 4) {
+                            return;
+                        }
+
+                        if (this.readyState === 4) {
+                            // Redirect the page
+                            window.location.replace(this.responseURL);
+                        }
+                    };
+                    xhttp.open("DELETE", href, true);
+                    xhttp.send();
+                }
+            </script>
+
             <p>
-                <a class="btn btn-outline-primary" href="/posts/edit/{{ .post.ID }}" role="button">Edit</a>    
+                <div class="btn-group" role="group">
+                    <a class="btn btn-outline-primary" href="/posts/edit/{{ .post.ID }}" role="button">Edit</a>
+                    <a class="btn btn-outline-danger" href="/posts/{{ .post.ID }}" onclick="sendDelete(event, this.href)">Delete</a>
+                </div>
             </p>
         </div>
 

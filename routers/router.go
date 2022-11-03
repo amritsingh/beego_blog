@@ -13,4 +13,5 @@ func init() {
 	beego.Router("/posts/:id([0-9]+)", &controllers.PostsController{}, "get:PostsShow")
 	beego.Router("/posts/edit/:id([0-9]+)", &controllers.PostsController{}, "get:PostsEditForm")
 	beego.Router("/posts/:id([0-9]+)", &controllers.PostsController{}, "post:PostsUpdate")
+	beego.Router("/posts/:id", &controllers.PostsController{}, "delete:PostsDelete")
 }
